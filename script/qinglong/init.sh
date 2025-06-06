@@ -4,7 +4,9 @@ set -e
 NAME=LotteryAutoScript
 BRABCH=main
 
-GIT_REPO=https://gitlab.com/sirhexs/${NAME}.git
+# 视网络情况选择链接
+# GIT_REPO=https://gh.301.ee/https://github.com/Sirhexs/${NAME}.git
+GIT_REPO=https://ghfast.top/https://github.com/Sirhexs/${NAME}.git
 
 if [ -d "$NAME" ]; then
     cd $NAME
