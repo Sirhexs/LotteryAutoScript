@@ -74,7 +74,7 @@ module.exports = Object.freeze({
 
         ENABLE_CHAT_CAPTCHA_OCR: false,
         CHAT_CAPTCHA_OCR_URL: 'http://127.0.0.1:9898/ocr/url/text',
-        ENABLE_MULTIPLE_ACCOUNT: false,
+        ENABLE_MULTIPLE_ACCOUNT: true,
 
         MULTIPLE_ACCOUNT_PARM: '',
         LOTTERY_LOG_LEVEL: 3,
