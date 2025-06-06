@@ -3,12 +3,18 @@ const ai = require('../lib/helper/ai');
 
 (async () => {
     try {
-        // 输出环境变量配置
-        console.log('AI配置信息:');
-        console.log('DEEPSEEK_BASE_URL:', process.env.DEEPSEEK_BASE_URL || '未设置');
-        console.log('DEEPSEEK_API_KEY:', process.env.DEEPSEEK_API_KEY ? '已设置' : '未设置');
-        console.log('DEEPSEEK_MODEL:', process.env.DEEPSEEK_MODEL || '未设置');
-        console.log('AI_SYSTEM_PROMPT:', process.env.AI_SYSTEM_PROMPT || '未设置');
+        // 获取AI服务配置信息
+        const aiService = ai;
+        const config = aiService.selectedProvider;
+
+        // 输出关键配置信息
+        console.log('baseurl:', config.baseUrl);
+        console.log('完整请求URL:', `${config.baseUrl}/chat/completions`);
+        console.log('API key:', config.apiKey);
+        console.log('model:', config.model);
+
+        const systemPrompt = process.env.AI_SYSTEM_PROMPT || `充当一个参加动态抽奖的评论专家，如果动态中明确了需要进行@或者带上话题，你需确保评论满足要求，并且把评论控制在50字以内，不需要给我评论的说明，直接给我评论内容即可。`;
+        console.log('prompt:', systemPrompt);
         console.log('-------------------');
 
         // 测试获取AI回答
@@ -30,7 +36,7 @@ const ai = require('../lib/helper/ai');
 转发破3.1w+再加抽1份周边礼包
 #供电局福利社##互动抽奖##iKF蓝牙耳机##关注抽奖##宠粉福利##iKF蓝牙耳机8周年##流动新声永不停息##限定周边#`;
         const options = {
-            systemPrompt: `充当一个参加动态抽奖的评论专家，如果动态中明确了需要进行@或者带上话题，你需确保评论满足要求，并且把评论控制在50字以内，不需要给我评论的说明，直接给我评论内容即可。`
+            systemPrompt: systemPrompt
         };
 
         const ai_answer = await ai.getAnswer(description, options);
