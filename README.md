@@ -30,7 +30,7 @@
 
 - 增加项目在青龙面板更高的可玩性
 - 适配[RayWangQvQ_BiliBiliToolPro](https://github.com/RayWangQvQ/BiliBiliToolPro)项目的Cookie 
-- AI智能评论（基于DeepSeek模型的智能评论生成）
+- AI智能评论（支持所有OpenAI兼容API格式的智能评论生成，包括OpenAI、DeepSeek等）
 
 **声明**: 此脚本仅用于学习和测试，作者本人并不对其负责，请于运行测试完成后自行删除，请勿滥用！
 
@@ -78,13 +78,48 @@ env.js已被替换为自动从青龙面板环境变量中获取Ray_BiliBiliCooki
 #### 评论AI的接入
 相关环境变量说明：
 
+支持所有OpenAI兼容的API格式，包括OpenAI、DeepSeek、通义千问、智谱AI等。
+
+**推荐使用新的OpenAI格式环境变量：**
+
 |        变量名        |           说明           |                                                                                描述                                                                                 |
 | :----------------: | :----------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| `DEEPSEEK_API_KEY` |     DeepSeek API密钥     | DeepSeek API的访问密钥，用于AI评论功能                                                                                                                              |
-| `DEEPSEEK_BASE_URL`|     DeepSeek API地址    | DeepSeek API的基础URL地址，默认为官方API地址                                                                                                                         |
-| `DEEPSEEK_MODEL`   |    DeepSeek 模型名称     | 使用的DeepSeek模型名称，如DeepSeek-R1                                                                                                                      |
+| `OPENAI_API_KEY`   |     OpenAI兼容API密钥    | OpenAI兼容API的访问密钥，用于AI评论功能                                                                                                                              |
+| `OPENAI_BASE_URL`  |     OpenAI兼容API地址    | OpenAI兼容API的基础URL地址，如：https://api.openai.com/v1、https://api.deepseek.com/v1 等                                                                         |
+| `OPENAI_MODEL`     |    AI模型名称           | 使用的AI模型名称，如：gpt-3.5-turbo、deepseek-chat、qwen-turbo 等                                                                                                  |
 | `IS_AI_CHAT`       |     是否启用AI评论        | 是否启用AI智能评论功能，true/false                                                                                                                                  |
 | `AI_SYSTEM_PROMPT` |      AI系统提示词        | 自定义AI评论的系统提示词，用于指导AI生成更符合预期的评论内容                                                                                                          |
+
+**向后兼容的DeepSeek格式环境变量（仍然支持）：**
+
+|        变量名        |           说明           |                                                                                描述                                                                                 |
+| :----------------: | :----------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `DEEPSEEK_API_KEY` |     DeepSeek API密钥     | DeepSeek API的访问密钥，用于AI评论功能（向后兼容）                                                                                                                    |
+| `DEEPSEEK_BASE_URL`|     DeepSeek API地址    | DeepSeek API的基础URL地址，默认为官方API地址（向后兼容）                                                                                                             |
+| `DEEPSEEK_MODEL`   |    DeepSeek 模型名称     | 使用的DeepSeek模型名称，如DeepSeek-R1（向后兼容）                                                                                                                   |
+
+**配置示例：**
+
+使用DeepSeek：
+```bash
+OPENAI_API_KEY=sk-xxx
+OPENAI_BASE_URL=https://api.deepseek.com/v1
+OPENAI_MODEL=deepseek-chat
+```
+
+使用OpenAI：
+```bash
+OPENAI_API_KEY=sk-xxx
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_MODEL=gpt-3.5-turbo
+```
+
+使用其他OpenAI兼容服务：
+```bash
+OPENAI_API_KEY=your-api-key
+OPENAI_BASE_URL=https://your-api-endpoint/v1
+OPENAI_MODEL=your-model-name
+```
 
 
 AI评论测试定时任务，设置好相关变量，运行以下定时即可查看ai生成效果
