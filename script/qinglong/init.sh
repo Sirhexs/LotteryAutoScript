@@ -4,7 +4,7 @@ set -e
 NAME=LotteryAutoScript
 BRABCH=main
 
-GIT_REPO=https://gitlab.com/shanmiteko/${NAME}.git
+GIT_REPO=https://gitlab.com/sirhexs/${NAME}.git
 
 if [ -d "$NAME" ]; then
     cd $NAME
